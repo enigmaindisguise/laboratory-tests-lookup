@@ -130,6 +130,23 @@ amount > 1 removes it entirely; fresh load shows empty selection and "0,00 ₴".
 
 ---
 
+## Phase 6: Modification — Show IDs in UI & Test Realignment (2026-08-01)
+
+**Purpose**: Post-"prod data ready" follow-up per the spec modification
+(FR-019/FR-020): display `ID – Title` on every row in both sections
+(presentational only, no logic change), and realign service tests that still
+asserted the removed 10-entry fixture catalog (`t-001`…`t-010`) to the
+production catalog (1,937 entries).
+
+- [X] T033 [US1] Update search tests in src/services/search.test.ts to assert against real catalog entries (глюкоза → top 8013; холестерин загальний / холесте → 8032; запалення → 8025; аналіз крові → 9028; keep browse/no-match/whitespace/order-stability cases) — makes the suite green again after the fixture removal
+- [X] T034 [US2] Update selection test in src/services/selection.test.ts: calculateTotal uses real entries 8013 (225 ₴) and 8032 (205 ₴) → 2 × 225 + 205 = 655
+- [X] T035 [P] [US1] Update TestResultList.tsx: render each row's title as `{test.id} – {test.title}` (en dash) per FR-019
+- [X] T036 [P] [US2] Update SelectedItemsList.tsx: render each row's title as `{test.id} – {test.title}` (en dash) per FR-019
+- [X] T037 [P] Update feature docs for the modification and production catalog: plan.md (summary/scale/constitution re-check), research.md §7, data-model.md (id display + duplicate-id caveat), contracts/data-contract.md (production catalog), contracts/ui-contract.md (row label rule), quickstart.md (real-data scenarios + ID display row)
+- [X] T038 Run full quality gates: npm run lint (zero errors), npm test -- --run (all green — 23 tests), npm run build (tsc -b && vite build succeeds)
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies

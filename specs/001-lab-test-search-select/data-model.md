@@ -12,7 +12,7 @@ The catalog entry a user can search for and select.
 
 | Field | Type | Constraints | Notes |
 |-------|------|-------------|-------|
-| id | string | REQUIRED, unique, stable | Canonical identifier of the test |
+| id | string | REQUIRED, stable | Canonical identifier of the test; displayed to the user as `ID – Title` on every row (FR-019) |
 | price | integer (number) | REQUIRED, ≥ 0 | Price of the test in UAH |
 | title | string | REQUIRED, non-empty | Name of the test (displayed in both sections) |
 | description | string | REQUIRED | Free-text description; matched by fuzzy search together with title |
@@ -21,6 +21,10 @@ The catalog entry a user can search for and select.
   application (`src/data/laboratory-tests.json`). No persistence, no server
   (constitution I; FR-012).
 - **Identity rule**: `id` is the canonical key — a test is unique by `id`.
+  ⚠️ The production dataset currently repeats some IDs (e.g. `7117` across
+  microbiology sample-site variants); rows are distinguished by title, and the
+  selection model keys by ID as specified. No deduplication was performed
+  (out of scope for the presentational modification; see research.md §7).
 - **Extensibility**: the file format is a plain JSON array; future catalog
   extensions only add entries (or, later, fields) without reworking the
   consumers.
@@ -53,7 +57,8 @@ One selected test with its quantity. Not stored — derived from user actions.
 - `price` MUST be an integer ≥ 0 (FR-010 relies on it for the sum).
 - `amount` MUST be an integer ≥ 1; 0 is never a valid selection amount — the
   down arrow stops at 1 and "Delete" is the only removal path (FR-017).
-- `id` MUST be unique across the catalog (identity rule).
+- `id` MUST be present and stable; uniqueness is the stated rule, with known
+  production-data exceptions documented under the Identity rule.
 
 ## Derived Values
 

@@ -38,4 +38,8 @@
 - Duplicate selection behavior (allow repeated instances of the same test) was
   resolved with an informed default documented in Assumptions and covered by
   acceptance scenario 2.5 and FR-007.
-- Spec is ready for `/speckit-clarify` or `/speckit-plan`.
+- **Modification 2026-08-01**: Spec updated to show IDs in the UI as "ID –
+  Title" (FR-019, FR-020; new acceptance scenarios US1.5, US1.6, US2.8; new
+  edge cases; SC-008). All 16 checklist items still pass: no [NEEDS
+  CLARIFICATION] markers, no implementation details introduced.
+- Spec is ready for `/speckit-plan` to re-plan the modified 001 feature.

@@ -3,9 +3,9 @@ import { searchTests } from './search';
 import catalog from '../data/laboratory-tests.json';
 
 describe('searchTests', () => {
-  it('returns t-001 as the top match for "цукор"', () => {
-    const results = searchTests('цукор', catalog);
-    expect(results[0]?.id).toBe('t-001');
+  it('returns Глюкоза (8013) as the top match for "глюкоза"', () => {
+    const results = searchTests('глюкоза', catalog);
+    expect(results[0]?.id).toBe('8013');
   });
 
   it('returns all items for an empty query (browse mode)', () => {
@@ -20,29 +20,29 @@ describe('searchTests', () => {
     expect(searchTests('zzzz', catalog)).toHaveLength(0);
   });
 
-  it('tolerates small typos ("глукоза" finds t-001)', () => {
+  it('tolerates small typos ("глукоза" finds Глюкоза 8013)', () => {
     const results = searchTests('глукоза', catalog);
-    expect(results.map((r) => r.id)).toContain('t-001');
+    expect(results.map((r) => r.id)).toContain('8013');
   });
 
-  it('is tolerant to word order ("крові цукор" finds t-001)', () => {
-    const results = searchTests('крові цукор', catalog);
-    expect(results[0]?.id).toBe('t-001');
+  it('is tolerant to word order ("холестерин загальний" finds 8032)', () => {
+    const results = searchTests('холестерин загальний', catalog);
+    expect(results[0]?.id).toBe('8032');
   });
 
-  it('matches partial words ("холесте" finds t-003)', () => {
+  it('matches partial words ("холесте" finds 8032)', () => {
     const results = searchTests('холесте', catalog);
-    expect(results.map((r) => r.id)).toContain('t-003');
+    expect(results.map((r) => r.id)).toContain('8032');
   });
 
-  it('matches against the description text ("запалення" finds t-008)', () => {
+  it('matches against the description text ("запалення" finds 8025)', () => {
     const results = searchTests('запалення', catalog);
-    expect(results.map((r) => r.id)).toContain('t-008');
+    expect(results.map((r) => r.id)).toContain('8025');
   });
 
   it('ranks items matching all query tokens above partial matches', () => {
     const results = searchTests('аналіз крові', catalog);
-    expect(results[0]?.id).toBe('t-002');
+    expect(results[0]?.id).toBe('9028');
   });
 
   it('keeps catalog order for equal scores', () => {

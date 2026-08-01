@@ -8,6 +8,8 @@
 
 **Input**: User description: "Front-end web application that allows user to search for items stored in app and then select them. Selection allows user to see result set that also supports summary of specific fields. UI: Two sections that are stacked: 1) Search and result set 2) Selected items + summary. 1) Search and result set with buttons for each item. Internal scroll supported. Buttons: Add. 2) Selected items from the previous section + summary section that shows total cost. Buttons: Delete (should remove this item from 'selected items'). Storage: Hardcoded json object of laboratory tests. Search: fuzzy search that seeks for items in that json objects. Example: 'blood sugar' would return 'Test for levels of sugar in blood'. Formulas: Currently only sum is supported. It should read total of each item in the 'selected items' section and calculate total."
 
+**Modification (2026-08-01)**: "Introduce showing IDs in the UI. No change in logic — UI only. Item label format: 'ID – Title'."
+
 ## Clarifications
 
 ### Session 2026-08-01
@@ -25,7 +27,9 @@ A user opens the application and wants to find a specific laboratory test. They
 type a phrase into the search box — which may be loosely worded, partial, or
 contain words in a different order than the test's name — and the application
 returns matching tests. Each match is shown in a scrollable result list with an
-"Add" button. The user scans the results and identifies the test they need.
+"Add" button, labeled with the test's unique ID and title in the format "ID –
+Title" (e.g., "101 – Test for levels of sugar in blood"). The user scans the
+results and identifies the test they need.
 
 **Why this priority**: Search is the entry point of the entire application.
 Without the ability to find tests, nothing else in the app can be used. It is
@@ -50,6 +54,13 @@ any selection features.
 4. **Given** the result list is longer than the visible area, **When** the user
    scrolls, **Then** the list scrolls internally without moving the rest of the
    page layout.
+5. **Given** the result list shows catalog items, **When** the user views any
+   item row, **Then** the row displays the item's unique ID and title in the
+   format "ID – Title" (e.g., "101 – Test for levels of sugar in blood").
+6. **Given** the application displays item IDs in the result list, **When** the
+   user performs a search, **Then** the set of matches is determined by the
+   test's name and description as before — the displayed ID has no effect on
+   matching.
 
 ---
 
@@ -58,7 +69,8 @@ any selection features.
 A user has found the tests they need and builds a selection. For each test in
 the result list they click "Add", and the test appears in the second, stacked
 section — Selected Items — along with a summary that shows the total cost of
-everything selected. Each item carries an amount: adding the same test again
+everything selected. Each selected item keeps the same "ID – Title" label it
+had in the result list. Each item carries an amount: adding the same test again
 increments its amount rather than creating a duplicate line. Up/down arrows in
 both sections let the user control the amount, the user can remove any item by
 clicking "Delete" on it, and the total updates immediately.
@@ -94,6 +106,9 @@ total. Delivers cost-estimation value as soon as the selection exists.
 7. **Given** a selected item has an amount greater than one, **When** the user
    clicks "Delete" on it, **Then** the item is removed entirely, not just
    decremented.
+8. **Given** items are present in Selected Items, **When** the user views an
+   item row, **Then** the row displays the item's unique ID and title in the
+   format "ID – Title", matching the label shown in the result list.
 
 ### Edge Cases
 
@@ -118,6 +133,11 @@ total. Delivers cost-estimation value as soon as the selection exists.
 - How does the app behave on narrow (mobile) screens? → The layout stays
   stacked; result and selected lists scroll internally; all buttons remain
   tappable with no horizontal page overflow.
+- Do IDs participate in search? → No; the ID is displayed for reference only —
+  search matching continues to use the test's name and description.
+- How is the "ID – Title" label rendered? → The label shows the test's unique ID
+  followed by an en dash and its title, e.g., "101 – Test for levels of sugar in
+  blood"; no two rows share an ID.
 
 ## Requirements *(mandatory)*
 
@@ -162,12 +182,19 @@ total. Delivers cost-estimation value as soon as the selection exists.
 - **FR-018**: System MUST render the two sections stacked at all screen sizes,
   with a mobile-first layout that is fully usable on small screens (down to
   ~320 px wide) and comfortable on large desktop screens.
+- **FR-019**: System MUST display every catalog item row in both sections
+  (Search result list and Selected Items) with its unique ID and title in the
+  format "ID – Title" (e.g., "101 – Test for levels of sugar in blood").
+- **FR-020**: System MUST keep the ID presentational only: search matching,
+  selection, amounts, and totals MUST behave exactly as before, with no logic
+  change.
 
 ### Key Entities *(include if feature involves data)*
 
 - **Laboratory Test**: A catalog entry representing a test a user can look up
-  and select. Key attributes: a unique ID, a short name, a free-text
-  description (used for matching), and a numeric cost.
+  and select. Key attributes: a unique ID (shown to the user as part of the
+  "ID – Title" row label), a short name (the title part of the label), a
+  free-text description (used for matching), and a numeric cost.
 - **Selection**: The user's chosen tests, built from the catalog, each tracked
   by its unique ID with an amount (quantity). A test appears at most once; its
   amount is incremented by "Add" and adjusted with the up/down arrows. The
@@ -196,6 +223,9 @@ total. Delivers cost-estimation value as soon as the selection exists.
 - **SC-007**: At mobile widths (down to ~320 px), the app is fully usable:
   sections stay stacked, all controls are reachable, and no horizontal page
   overflow occurs.
+- **SC-008**: 100% of catalog items shown in the result list and in Selected
+  Items display their unique ID and title in the "ID – Title" format, verified
+  by visual inspection of both sections.
 
 ## Assumptions
 
@@ -223,3 +253,8 @@ total. Delivers cost-estimation value as soon as the selection exists.
   on small screens (~320 px and up) and comfortable on desktop (constrained
   content width).
 - Search matches against both the name and the description of each test.
+- Every item row in both sections displays the format "ID – Title", where
+  "Title" is the test's short name; the ID is shown for reference only and does
+  not affect search matching, amounts, or totals.
+- The displayed ID is the same unique ID already defined for each catalog item;
+  no new data or logic is introduced.

@@ -86,3 +86,33 @@ user's plan constraints; no open clarifications remain.
   the set-ops dependency set, and the user forbids new libraries).
 - **Alternatives considered**: @testing-library/react / Playwright — new
   dependencies — rejected.
+
+## 7. Modification (2026-08-01): Show IDs in UI + Test Realignment
+
+- **Decision**: (a) Every item row in both sections displays the test's ID
+  followed by an en dash and its title (`ID – Title`, e.g. `8013 – Глюкоза`),
+  per FR-019. (b) Service tests were updated to assert against the production
+  catalog instead of the removed 10-item fixture (`t-001`…`t-010`).
+- **Rationale**:
+  - The ID is already a required field of every catalog entry (data-model.md),
+    so the change is purely presentational — no data or logic changes, no new
+    dependencies (FR-020; constitution III/IV unaffected).
+  - The `prod data ready` commit (897a5fe) replaced the fixture catalog with
+    the real dataset (1,937 entries), which made 7 assertions stale: the old
+    fixtures `t-001` (150 ₴), `t-002` (320 ₴), `t-003`, `t-008` no longer
+    exist. Tests now assert against verified real entries: `глюкоза` → top
+    `8013` (Глюкоза, 225 ₴), `холестерин загальний` / `холесте` → `8032`
+    (Холестерин загальний, 205 ₴), `запалення` (description match) → `8025`
+    (C-реактивний білок), `аналіз крові` → `9028` (Загальний аналіз крові).
+  - The spec's canonical example ("blood sugar" → "Test for levels of sugar in
+    blood") has no literal equivalent in the production catalog; the closest
+    real match is `глюкоза` → `8013`, used as the test analogue.
+- **Alternatives considered**: keeping fixture-only assertions decoupled from
+  the real catalog (rejected: tests must prove behavior on the shipped data);
+  adding synthetic entries to the production JSON (rejected: data is
+  user-owned production data).
+- **Caveat**: the production dataset contains duplicate IDs (1,669 unique IDs
+  across 1,937 entries, e.g. `7117` repeated for microbiology variants
+  distinguished by title). Displaying `ID – Title` still distinguishes rows by
+  title; the selection model keys by ID as specified. No logic change was made
+  for duplicates — out of scope for this presentational modification.

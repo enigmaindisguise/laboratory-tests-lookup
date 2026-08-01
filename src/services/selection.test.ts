@@ -29,8 +29,8 @@ describe('selection service', () => {
   });
 
   it('calculateTotal sums price x amount across the selection', () => {
-    const selection = add(add({}, 't-001', 2), 't-002', 1);
-    expect(calculateTotal(selection, catalog)).toBe(2 * 150 + 1 * 320);
+    const selection = add(add({}, '8013', 2), '8032', 1);
+    expect(calculateTotal(selection, catalog)).toBe(2 * 225 + 1 * 205);
   });
 
   it('calculateTotal returns 0 for an empty selection', () => {

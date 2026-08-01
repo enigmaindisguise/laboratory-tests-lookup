@@ -25,73 +25,33 @@ A JSON array of objects:
 - Future catalog extensions add entries to the array (and may add optional
   fields) without changing this contract's required fields.
 
-## Seed Data (10 dummy entries)
+## Production Catalog
+
+`src/data/laboratory-tests.json` holds the production dataset: **1,937 entries
+(1,669 unique IDs)** of real laboratory tests and services with Ukrainian
+titles, e.g.:
 
 ```json
 [
   {
-    "id": "t-001",
-    "price": 150,
-    "title": "Glucose (blood sugar)",
-    "description": "Test for levels of sugar in blood"
+    "id": "8013",
+    "price": 225,
+    "title": "Глюкоза",
+    "description": "Маркер порушень вуглеводного обміну"
   },
   {
-    "id": "t-002",
-    "price": 320,
-    "title": "Complete Blood Count",
-    "description": "Measures red blood cells, white blood cells and platelets"
-  },
-  {
-    "id": "t-003",
-    "price": 280,
-    "title": "Cholesterol Panel",
-    "description": "Total, LDL and HDL cholesterol levels"
-  },
-  {
-    "id": "t-004",
-    "price": 190,
-    "title": "Thyroid-Stimulating Hormone",
-    "description": "Checks thyroid gland function"
-  },
-  {
-    "id": "t-005",
-    "price": 240,
-    "title": "Vitamin D",
-    "description": "Levels of vitamin D in the blood"
-  },
-  {
-    "id": "t-006",
-    "price": 210,
-    "title": "Iron Studies",
-    "description": "Serum iron, ferritin and transferrin saturation"
-  },
-  {
-    "id": "t-007",
-    "price": 120,
-    "title": "Urinalysis",
-    "description": "Physical, chemical and microscopic examination of urine"
-  },
-  {
-    "id": "t-008",
-    "price": 160,
-    "title": "C-Reactive Protein",
-    "description": "Measures the inflammation marker CRP"
-  },
-  {
-    "id": "t-009",
-    "price": 260,
-    "title": "Liver Function Test",
-    "description": "ALT, AST and bilirubin enzyme panel"
-  },
-  {
-    "id": "t-010",
-    "price": 200,
-    "title": "HbA1c",
-    "description": "Average blood sugar level over the past three months"
+    "id": "8032",
+    "price": 205,
+    "title": "Холестерин загальний",
+    "description": "Маркер порушень ліпідного обміну"
   }
 ]
 ```
 
-Note: `t-001` (and `t-010`) intentionally contain the words of the spec's
-canonical example — the query "blood sugar" MUST return `t-001` among the
-matches (SC-001).
+- The spec's canonical search example ("blood sugar" → "Test for levels of
+  sugar in blood") refers to the original 10-entry fixture, which was removed
+  when the production catalog landed. The real-catalog analogue used by the
+  tests and quickstart is `глюкоза` → `8013` (Глюкоза).
+- ⚠️ Some IDs repeat in the source data (e.g. `7117` across microbiology
+  sample-site variants); rows are distinguished by title. Consumers key by
+  `id` per data-model.md.

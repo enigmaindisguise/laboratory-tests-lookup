@@ -16,6 +16,7 @@ Two vertically stacked sections on one page:
 
 | Control | Location | Behavior | Spec ref |
 |---------|----------|----------|----------|
+| Row label | Every row, both sections | Displays `ID – Title` (en dash, e.g. `8013 – Глюкоза`); the ID is presentational only — it does not affect matching, amounts, or totals | FR-019, FR-020 |
 | Search input | Section 1, top | Filters the catalog by fuzzy match; empty query shows the full catalog (browse mode) | FR-001, FR-002, FR-005 |
 | Add button | Every result row | Adds the stepper amount (N) of that test to the selection; if already selected, increments its amount by N | FR-003, FR-007 |
 | Amount stepper (− N +) | Every row, both sections | Section 1: sets the amount to add (min 1); Section 2: adjusts the selected amount by ±1, never below 1 | FR-016, FR-017 |
@@ -24,6 +25,9 @@ Two vertically stacked sections on one page:
 
 ## Behavior Rules
 
+- Every item row in both sections is labeled `ID – Title` (e.g. `8013 –
+  Глюкоза`); the ID is displayed for reference only and never affects search,
+  amounts, or totals (FR-019, FR-020).
 - Empty query → all catalog items are shown (browse mode).
 - No match → a clear "no results" message replaces the list.
 - Amounts never go below 1 in Section 2; "Delete" is the only way to remove.

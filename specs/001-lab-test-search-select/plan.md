@@ -14,8 +14,15 @@ Tailwind CSS v4 + Vitest 4 + ESLint 10 flat config, same scripts and
 configuration) with zero new dependencies. All logic lives in small, pure
 services (`search`, `selection`, `format`) with colocated Vitest tests; UI is
 small single-responsibility components sharing one `AmountStepper` component.
-Data is an embedded JSON array of 10 seeded laboratory tests (see
+Data is an embedded JSON catalog of 1,937 real laboratory tests (see
 [contracts/data-contract.md](./contracts/data-contract.md)).
+
+**Modification (2026-08-01)**: Show each test's ID in the UI as `ID – Title`
+(en dash) on every item row in both sections (FR-019). The ID is presentational
+only — search matching, selection, amounts, and totals are unchanged (FR-020).
+Service tests that still asserted the removed 10-item fixture catalog
+(`t-001`…`t-010`) were realigned to the production catalog (see
+[research.md](./research.md) §7).
 
 ## Technical Context
 
@@ -23,7 +30,7 @@ Data is an embedded JSON array of 10 seeded laboratory tests (see
 
 **Primary Dependencies**: react, react-dom, tailwindcss (+ @tailwindcss/vite), vite, @vitejs/plugin-react — runtime/build; eslint, typescript-eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, vitest, @types/* — dev. Identical set to YuBil/set-ops.
 
-**Storage**: Embedded JSON catalog at `src/data/laboratory-tests.json` (no external storage; FE-only per constitution I). One-line `resolveJsonModule: true` addition to `tsconfig.app.json` — see Constitution Check.
+**Storage**: Embedded JSON catalog at `src/data/laboratory-tests.json` — 1,937 real production entries (no external storage; FE-only per constitution I). One-line `resolveJsonModule: true` addition to `tsconfig.app.json` — see Constitution Check.
 
 **Testing**: Vitest 4 — colocated `*.test.ts` unit tests for pure services; `npm test` (watch) / `npm test -- --run` (CI). No component-testing libraries (not in set-ops dependency set).
 
@@ -35,7 +42,7 @@ Data is an embedded JSON array of 10 seeded laboratory tests (see
 
 **Constraints**: No backend; no new libraries beyond the set-ops set; offline-capable (SC-006); small files with single responsibility; internal scroll in the result list; UAH currency formatting.
 
-**Scale/Scope**: Single user, session-only selection (no persistence); catalog starts at 10 entries, extensible to low hundreds.
+**Scale/Scope**: Single user, session-only selection (no persistence); catalog is the production dataset (1,937 entries, 1,669 unique IDs — note: the source data contains duplicate IDs for some panel variants, e.g. `7117`, which are distinguished by title).
 
 ## Constitution Check
 
@@ -54,6 +61,11 @@ Post-design re-check: unchanged — PASS. The `resolveJsonModule` flag is a
 PATCH-level configuration clarification, not a principle change; it is the
 only difference from the set-ops configuration and is documented here and in
 `research.md` §3.
+
+Post-modification re-check (2026-08-01): unchanged — PASS. Showing IDs in the
+UI (`ID – Title`) is presentational only (FR-019/FR-020): no new dependencies,
+no logic change, no config change. Test realignment (research.md §7) touches
+only `*.test.ts` expectations.
 
 ## Project Structure
 
@@ -82,7 +94,7 @@ src/
 │   ├── SelectedItemsList.tsx    # section 2: selected rows (Delete + AmountStepper)
 │   └── SummaryPanel.tsx         # section 2: total cost in UAH
 ├── data/
-│   └── laboratory-tests.json    # 10 seeded entries (see contracts/data-contract.md)
+│   └── laboratory-tests.json    # 1,937 production entries (see contracts/data-contract.md)
 ├── hooks/
 │   ├── useSearch.ts             # query state → fuzzy-filtered results
 │   └── useSelection.ts          # selection map → lines, total (derived)

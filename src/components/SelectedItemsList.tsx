@@ -24,7 +24,9 @@ export default function SelectedItemsList({
       {lines.map(({ testId, amount, test }) => (
         <li key={testId} className="flex flex-wrap items-center gap-3 py-3">
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium text-gray-800">{test.title}</p>
+            <p className="text-sm font-medium text-gray-800">
+              {test.id} – {test.title}
+            </p>
             <p className="mt-1 text-sm text-gray-700">{formatUah(test.price)}</p>
           </div>
           <AmountStepper
