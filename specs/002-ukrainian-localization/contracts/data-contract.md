@@ -1,0 +1,100 @@
+# Data Contract: Laboratory Test Catalog (Ukrainian)
+
+The application's only data interface is the embedded catalog file
+(`src/data/laboratory-tests.json`). This contract defines its shape and the
+seed data. See [data-model.md](../data-model.md) for entity rules and
+[research.md](../research.md) §3 for the translation rationale.
+
+## Schema
+
+A JSON array of objects — **unchanged from feature 001**:
+
+```json
+[
+  {
+    "id": "string (unique, stable)",
+    "price": "integer >= 0 (UAH)",
+    "title": "string (non-empty)",
+    "description": "string"
+  }
+]
+```
+
+- `id` is the canonical key; consumers MUST NOT assume array order stability
+  beyond what the file provides.
+- `price` is an integer amount in UAH.
+- **Localization rule**: `id` and `price` are frozen; `title` and
+  `description` MUST be natural Ukrainian (translated meaning, not
+  transliteration) per research.md §3.
+- Future catalog extensions add entries without changing this contract.
+
+## Seed Data (10 entries, Ukrainian)
+
+```json
+[
+  {
+    "id": "t-001",
+    "price": 150,
+    "title": "Глюкоза (цукор крові)",
+    "description": "Тест на рівень цукру в крові"
+  },
+  {
+    "id": "t-002",
+    "price": 320,
+    "title": "Загальний аналіз крові",
+    "description": "Вимірює кількість еритроцитів, лейкоцитів і тромбоцитів"
+  },
+  {
+    "id": "t-003",
+    "price": 280,
+    "title": "Ліпідограма (холестерин)",
+    "description": "Рівні загального холестерину, ЛПНЩ та ЛПВЩ"
+  },
+  {
+    "id": "t-004",
+    "price": 190,
+    "title": "Тиреотропний гормон (ТТГ)",
+    "description": "Перевіряє функцію щитоподібної залози"
+  },
+  {
+    "id": "t-005",
+    "price": 240,
+    "title": "Вітамін D",
+    "description": "Рівень вітаміну D у крові"
+  },
+  {
+    "id": "t-006",
+    "price": 210,
+    "title": "Обмін заліза",
+    "description": "Сироваткове залізо, феритин і насичення трансферину"
+  },
+  {
+    "id": "t-007",
+    "price": 120,
+    "title": "Загальний аналіз сечі",
+    "description": "Фізичне, хімічне та мікроскопічне дослідження сечі"
+  },
+  {
+    "id": "t-008",
+    "price": 160,
+    "title": "С-реактивний білок",
+    "description": "Вимірює маркер запалення СРБ"
+  },
+  {
+    "id": "t-009",
+    "price": 260,
+    "title": "Печінкові проби",
+    "description": "Ферментна панель: АЛТ, АСТ і білірубін"
+  },
+  {
+    "id": "t-010",
+    "price": 200,
+    "title": "Глікований гемоглобін (HbA1c)",
+    "description": "Середній рівень цукру в крові за останні три місяці"
+  }
+]
+```
+
+Note: `t-001` (and `t-010`) intentionally contain the words of the canonical
+example — the Ukrainian query `цукор` MUST return `t-001` among the matches
+(SC-003 of feature 002; replaces the English example of feature 001).
