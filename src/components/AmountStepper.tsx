@@ -19,7 +19,7 @@ export default function AmountStepper({
         type="button"
         onClick={onDecrement}
         disabled={!canDecrement}
-        aria-label="Decrease amount"
+        aria-label="Зменшити кількість"
         className="flex h-7 w-7 items-center justify-center rounded border border-gray-300 text-gray-700 enabled:hover:bg-gray-100 disabled:opacity-40"
       >
         −
@@ -30,7 +30,7 @@ export default function AmountStepper({
       <button
         type="button"
         onClick={onIncrement}
-        aria-label="Increase amount"
+        aria-label="Збільшити кількість"
         className="flex h-7 w-7 items-center justify-center rounded border border-gray-300 text-gray-700 enabled:hover:bg-gray-100"
       >
         +

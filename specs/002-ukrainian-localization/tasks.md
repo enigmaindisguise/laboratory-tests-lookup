@@ -24,7 +24,7 @@
 
 **Purpose**: Pre-flight check — the project already exists (feature 001); nothing to scaffold. No new dependencies, no config changes (constitution II, III).
 
-- [ ] T001 Run baseline quality gates before any change: `npm run lint`, `npm test -- --run`, `npm run build` — all three MUST pass and confirm the working tree starts green
+- [X] T001 Run baseline quality gates before any change: `npm run lint`, `npm test -- --run`, `npm run build` — all three MUST pass and confirm the working tree starts green
 
 ---
 
@@ -44,12 +44,12 @@
 
 ### Implementation for User Story 1 (all tasks parallel — 6 distinct files)
 
-- [ ] T002 [P] [US1] Translate h1 and both section headings in src/App.tsx per research.md §2 S3–S5 («Лабораторні дослідження», «Пошук і результати», «Обрані дослідження»)
-- [ ] T003 [P] [US1] Translate search placeholder and aria-label in src/components/SearchBar.tsx per research.md §2 S6–S7 («Пошук лабораторних досліджень…», «Пошук лабораторних досліджень»)
-- [ ] T004 [P] [US1] Translate empty-state message and Add button in src/components/TestResultList.tsx per research.md §2 S8–S9 («Нічого не знайдено. Спробуйте інший пошуковий запит.», «Додати»)
-- [ ] T005 [P] [US1] Translate empty-state message and Delete button in src/components/SelectedItemsList.tsx per research.md §2 S10–S11 («Поки нічого не обрано.», «Видалити»)
-- [ ] T006 [P] [US1] Translate summary label in src/components/SummaryPanel.tsx per research.md §2 S12 («Загальна вартість»)
-- [ ] T007 [P] [US1] Set `<html lang="uk">` and translate `<title>` in index.html per research.md §2 S1–S2 («Лабораторні дослідження»)
+- [X] T002 [P] [US1] Translate h1 and both section headings in src/App.tsx per research.md §2 S3–S5 («Лабораторні дослідження», «Пошук і результати», «Обрані дослідження»)
+- [X] T003 [P] [US1] Translate search placeholder and aria-label in src/components/SearchBar.tsx per research.md §2 S6–S7 («Пошук лабораторних досліджень…», «Пошук лабораторних досліджень»)
+- [X] T004 [P] [US1] Translate empty-state message and Add button in src/components/TestResultList.tsx per research.md §2 S8–S9 («Нічого не знайдено. Спробуйте інший пошуковий запит.», «Додати»)
+- [X] T005 [P] [US1] Translate empty-state message and Delete button in src/components/SelectedItemsList.tsx per research.md §2 S10–S11 («Поки нічого не обрано.», «Видалити»)
+- [X] T006 [P] [US1] Translate summary label in src/components/SummaryPanel.tsx per research.md §2 S12 («Загальна вартість»)
+- [X] T007 [P] [US1] Set `<html lang="uk">` and translate `<title>` in index.html per research.md §2 S1–S2 («Лабораторні дослідження»)
 
 **Checkpoint**: US1 complete — the full interface is visible in Ukrainian (quickstart scenarios 1–2 pass).
 
@@ -63,8 +63,8 @@
 
 ### Implementation for User Story 2 (sequential — T009 depends on T008)
 
-- [ ] T008 [US2] Translate all 10 `title` and `description` values in src/data/laboratory-tests.json per research.md §3 — ids (t-001…t-010) and prices MUST stay frozen (data-model.md; selection service and selection.test.ts depend on them)
-- [ ] T009 [US2] Migrate query fixtures in src/services/search.test.ts to Ukrainian equivalents per research.md §4 (e.g., `цукор` → t-001, `глукоза` typo, `крові цукор` word order, `холесте` partial, `запалення` description match, `аналіз крові` ranking, `кров` stable order) — same IDs, same assertions, test titles/comments stay English; then run `npm test -- --run` and confirm all 23 tests pass
+- [X] T008 [US2] Translate all 10 `title` and `description` values in src/data/laboratory-tests.json per research.md §3 — ids (t-001…t-010) and prices MUST stay frozen (data-model.md; selection service and selection.test.ts depend on them)
+- [X] T009 [US2] Migrate query fixtures in src/services/search.test.ts to Ukrainian equivalents per research.md §4 (e.g., `цукор` → t-001, `глукоза` typo, `крові цукор` word order, `холесте` partial, `запалення` description match, `аналіз крові` ranking, `кров` stable order) — same IDs, same assertions, test titles/comments stay English; then run `npm test -- --run` and confirm all 23 tests pass
 
 **Checkpoint**: US2 complete — Ukrainian search + selection work end-to-end (quickstart scenarios 3–11 pass).
 
@@ -78,8 +78,8 @@
 
 ### Implementation for User Story 3
 
-- [ ] T010 [P] [US3] Translate amount-stepper aria-labels in src/components/AmountStepper.tsx per research.md §2 S13–S14 («Зменшити кількість», «Збільшити кількість»)
-- [ ] T011 [US3] Run the accessibility/document audit (quickstart scenarios 2 + 7): confirm `lang="uk"`, Ukrainian `<title>`, and Ukrainian accessible names for the search field and both stepper buttons (devtools accessibility tree)
+- [X] T010 [P] [US3] Translate amount-stepper aria-labels in src/components/AmountStepper.tsx per research.md §2 S13–S14 («Зменшити кількість», «Збільшити кількість»)
+- [X] T011 [US3] Run the accessibility/document audit (quickstart scenarios 2 + 7): confirm `lang="uk"`, Ukrainian `<title>`, and Ukrainian accessible names for the search field and both stepper buttons (devtools accessibility tree)
 
 **Checkpoint**: All user stories are independently functional.
 
@@ -89,9 +89,9 @@
 
 **Purpose**: Final validation, English-remnant audit, and quality gates.
 
-- [ ] T012 [P] Run the full manual validation of specs/002-ukrainian-localization/quickstart.md — all 12 scenarios including mobile width ~320 px (no horizontal overflow, no clipped Ukrainian labels/buttons, FR-010, SC-006)
-- [ ] T013 [P] Audit for English remnants: grep the 14 English strings from research.md §2 (S1–S14) across index.html and src/ — zero occurrences must remain (FR-009); English in code comments, test titles, and identifiers is expected and allowed
-- [ ] T014 Run final quality gates: `npm run lint`, `npm test -- --run`, `npm run build` — all MUST pass before the feature is complete
+- [X] T012 [P] Run the full manual validation of specs/002-ukrainian-localization/quickstart.md — all 12 scenarios including mobile width ~320 px (no horizontal overflow, no clipped Ukrainian labels/buttons, FR-010, SC-006)
+- [X] T013 [P] Audit for English remnants: grep the 14 English strings from research.md §2 (S1–S14) across index.html and src/ — zero occurrences must remain (FR-009); English in code comments, test titles, and identifiers is expected and allowed
+- [X] T014 Run final quality gates: `npm run lint`, `npm test -- --run`, `npm run build` — all MUST pass before the feature is complete
 
 ---
 

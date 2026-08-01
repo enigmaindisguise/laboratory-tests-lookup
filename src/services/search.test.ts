@@ -3,8 +3,8 @@ import { searchTests } from './search';
 import catalog from '../data/laboratory-tests.json';
 
 describe('searchTests', () => {
-  it('returns t-001 as the top match for "blood sugar"', () => {
-    const results = searchTests('blood sugar', catalog);
+  it('returns t-001 as the top match for "цукор"', () => {
+    const results = searchTests('цукор', catalog);
     expect(results[0]?.id).toBe('t-001');
   });
 
@@ -20,33 +20,33 @@ describe('searchTests', () => {
     expect(searchTests('zzzz', catalog)).toHaveLength(0);
   });
 
-  it('tolerates small typos ("glocose" finds t-001)', () => {
-    const results = searchTests('glocose', catalog);
+  it('tolerates small typos ("глукоза" finds t-001)', () => {
+    const results = searchTests('глукоза', catalog);
     expect(results.map((r) => r.id)).toContain('t-001');
   });
 
-  it('is tolerant to word order ("sugar blood" finds t-001)', () => {
-    const results = searchTests('sugar blood', catalog);
+  it('is tolerant to word order ("крові цукор" finds t-001)', () => {
+    const results = searchTests('крові цукор', catalog);
     expect(results[0]?.id).toBe('t-001');
   });
 
-  it('matches partial words ("chol" finds t-003)', () => {
-    const results = searchTests('chol', catalog);
+  it('matches partial words ("холесте" finds t-003)', () => {
+    const results = searchTests('холесте', catalog);
     expect(results.map((r) => r.id)).toContain('t-003');
   });
 
-  it('matches against the description text ("inflammation marker" finds t-008)', () => {
-    const results = searchTests('inflammation marker', catalog);
+  it('matches against the description text ("запалення" finds t-008)', () => {
+    const results = searchTests('запалення', catalog);
     expect(results.map((r) => r.id)).toContain('t-008');
   });
 
   it('ranks items matching all query tokens above partial matches', () => {
-    const results = searchTests('blood count', catalog);
+    const results = searchTests('аналіз крові', catalog);
     expect(results[0]?.id).toBe('t-002');
   });
 
   it('keeps catalog order for equal scores', () => {
-    const results = searchTests('blood', catalog);
+    const results = searchTests('кров', catalog);
     const ids = results.map((r) => r.id);
     const order = ids.map((id) => catalog.findIndex((c) => c.id === id));
     expect(order).toEqual([...order].sort((a, b) => a - b));

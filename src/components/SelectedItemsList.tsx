@@ -16,7 +16,7 @@ export default function SelectedItemsList({
   onDelete,
 }: SelectedItemsListProps) {
   if (lines.length === 0) {
-    return <p className="text-sm text-gray-500">No items selected yet.</p>;
+    return <p className="text-sm text-gray-500">Поки нічого не обрано.</p>;
   }
 
   return (
@@ -37,7 +37,7 @@ export default function SelectedItemsList({
             onClick={() => onDelete(testId)}
             className="rounded border border-red-300 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50"
           >
-            Delete
+            Видалити
           </button>
         </li>
       ))}

@@ -2,61 +2,61 @@
   {
     "id": "t-001",
     "price": 150,
-    "title": "Glucose (blood sugar)",
-    "description": "Test for levels of sugar in blood"
+    "title": "Глюкоза (цукор крові)",
+    "description": "Тест на рівень цукру в крові"
   },
   {
     "id": "t-002",
     "price": 320,
-    "title": "Complete Blood Count",
-    "description": "Measures red blood cells, white blood cells and platelets"
+    "title": "Загальний аналіз крові",
+    "description": "Вимірює кількість еритроцитів, лейкоцитів і тромбоцитів"
   },
   {
     "id": "t-003",
     "price": 280,
-    "title": "Cholesterol Panel",
-    "description": "Total, LDL and HDL cholesterol levels"
+    "title": "Ліпідограма (холестерин)",
+    "description": "Рівні загального холестерину, ЛПНЩ та ЛПВЩ"
   },
   {
     "id": "t-004",
     "price": 190,
-    "title": "Thyroid-Stimulating Hormone",
-    "description": "Checks thyroid gland function"
+    "title": "Тиреотропний гормон (ТТГ)",
+    "description": "Перевіряє функцію щитоподібної залози"
   },
   {
     "id": "t-005",
     "price": 240,
-    "title": "Vitamin D",
-    "description": "Levels of vitamin D in the blood"
+    "title": "Вітамін D",
+    "description": "Рівень вітаміну D у крові"
   },
   {
     "id": "t-006",
     "price": 210,
-    "title": "Iron Studies",
-    "description": "Serum iron, ferritin and transferrin saturation"
+    "title": "Обмін заліза",
+    "description": "Сироваткове залізо, феритин і насичення трансферину"
   },
   {
     "id": "t-007",
     "price": 120,
-    "title": "Urinalysis",
-    "description": "Physical, chemical and microscopic examination of urine"
+    "title": "Загальний аналіз сечі",
+    "description": "Фізичне, хімічне та мікроскопічне дослідження сечі"
   },
   {
     "id": "t-008",
     "price": 160,
-    "title": "C-Reactive Protein",
-    "description": "Measures the inflammation marker CRP"
+    "title": "С-реактивний білок",
+    "description": "Вимірює маркер запалення СРБ"
   },
   {
     "id": "t-009",
     "price": 260,
-    "title": "Liver Function Test",
-    "description": "ALT, AST and bilirubin enzyme panel"
+    "title": "Печінкові проби",
+    "description": "Ферментна панель: АЛТ, АСТ і білірубін"
   },
   {
     "id": "t-010",
     "price": 200,
-    "title": "HbA1c",
-    "description": "Average blood sugar level over the past three months"
+    "title": "Глікований гемоглобін (HbA1c)",
+    "description": "Середній рівень цукру в крові за останні три місяці"
   }
 ]

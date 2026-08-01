@@ -12,7 +12,7 @@ export default function TestResultList({ tests, onAdd }: TestResultListProps) {
   const [amounts, setAmounts] = useState<Record<string, number>>({});
 
   if (tests.length === 0) {
-    return <p className="text-sm text-gray-500">No results found. Try a different search.</p>;
+    return <p className="text-sm text-gray-500">Нічого не знайдено. Спробуйте інший пошуковий запит.</p>;
   }
 
   return (
@@ -40,7 +40,7 @@ export default function TestResultList({ tests, onAdd }: TestResultListProps) {
               onClick={() => onAdd(test.id, amount)}
               className="rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700"
             >
-              Add
+              Додати
             </button>
           </li>
         );
