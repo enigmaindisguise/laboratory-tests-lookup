@@ -1,0 +1,9 @@
+{
+  "item": "tr.page-analize__table_tr",
+  "fields": {
+    "id": { "selector": "[itemprop='url'] b" },
+    "title": { "selector": "[itemprop='name']" },
+    "description": { "selector": "[itemprop='description']" },
+    "price": { "selector": "[itemprop='price']", "attr": "content" }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "scraper",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scrape": "node scrape.mjs",
+    "test": "node --test test/extract-check.mjs test/pages-check.mjs"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  }
+}

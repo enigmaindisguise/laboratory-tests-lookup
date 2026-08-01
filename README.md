@@ -7,6 +7,9 @@ persistence — the catalog lives in `src/data/laboratory-tests.json`.
 **Stack:** React 19 · TypeScript · Vite · Tailwind v4 · Vitest · ESLint (flat config).
 Hosted on GitHub Pages.
 
+A CLI scraper in `scripts/scraper/` refreshes the catalog from lab price-list
+pages (see [§2](#2-cli-scraper-refresh-the-catalog)).
+
 ---
 
 ## 1. Local development
@@ -49,7 +52,68 @@ npm run preview        # serve the production build from dist/ locally
 
 ---
 
-## 2. Production
+## 2. CLI scraper (refresh the catalog)
+
+`scripts/scraper/` is an isolated Node package: a CLI tool that turns a lab
+price-list page (a URL or a saved HTML file) into the app's catalog format.
+It is developer authoring tooling only — never part of the app bundle or
+deployment, and outside the root quality gates (it validates itself via its
+own test suite).
+
+### Install (one time)
+
+```bash
+cd scripts/scraper
+npm install          # cheerio is the only dependency
+```
+
+### Run
+
+```bash
+node scrape.mjs <source> [--selectors <path>] [--output <path>] [--help]
+```
+
+- `<source>` — auto-detected: an existing local HTML file is read from disk;
+  anything else must be an `http(s)://` URL and is fetched with a 10 s timeout.
+- `--selectors <path>` — JSON file with the CSS selectors to extract with
+  (default `./selectors.json`).
+- `--output <path>` — catalog-format JSON file written on success (default
+  `./catalog.json`).
+- `--help` — print usage and exit.
+
+Offline check against the bundled example page (expects exactly 6 entries):
+
+```bash
+node scrape.mjs fixtures/example.html
+# Extracted 6 entries → ./catalog.json
+```
+
+Scrape a live price-list page with custom selectors and output path:
+
+```bash
+node scrape.mjs https://example.org/analize/koronavirus \
+  --selectors my-selectors.json --output data/tests.json
+```
+
+Exit codes: `0` success · `1` usage, network, or config error · `2` page
+fetched but no extractable test data. The tool never writes into the app
+catalog (`src/data/laboratory-tests.json`) — review the produced file before
+including it.
+
+### Tests
+
+```bash
+cd scripts/scraper
+npm test             # node --test test/extract-check.mjs
+```
+
+Full usage, selectors schema, and the exit-code contract live in
+`specs/003-cli-url-scraper/quickstart.md` and
+`specs/003-cli-url-scraper/contracts/`.
+
+---
+
+## 3. Production
 
 ### Where it's hosted
 
@@ -83,7 +147,7 @@ ever 404 on the live site, the `base` path in `vite.config.ts` must stay
 
 ---
 
-## 3. Feature workflow with git worktrees
+## 4. Feature workflow with git worktrees
 
 Worktrees let you develop multiple features in parallel from one clone: each
 `git worktree add` creates a separate checkout with its **own working
