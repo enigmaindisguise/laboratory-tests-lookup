@@ -30,14 +30,14 @@ RED-GREEN: write the test first, watch it fail, then implement.
 (libraries, scripts, and configuration — constitution II). Do NOT add any
 dependency beyond the set-ops set (constitution III, user constraint).
 
-- [ ] T001 Initialize npm project: package.json with the exact set-ops dependency set (react, react-dom, tailwindcss, @tailwindcss/vite, vite, @vitejs/plugin-react; dev: typescript, vitest, eslint, typescript-eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, @types/*) and scripts dev/build/lint/preview/test
-- [ ] T002 [P] Create vite.config.ts with react() and tailwindcss() plugins and a base path for GitHub Pages deployment
-- [ ] T003 [P] Create tsconfig.json (project references) plus tsconfig.app.json (strict bundler settings: noEmit, noUnusedLocals, noUnusedParameters, verbatimModuleSyntax + resolveJsonModule for the JSON catalog) and tsconfig.node.json
-- [ ] T004 [P] Create eslint.config.js flat config (typescript-eslint recommended, react-hooks, react-refresh, globals.browser)
-- [ ] T005 [P] Create index.html (root div + module script to /src/main.tsx) and src/index.css (Tailwind v4 entry)
-- [ ] T006 [P] Create .gitignore (node_modules, dist, .vite, editor dirs — mirror set-ops)
-- [ ] T007 [P] Create .github/workflows/deploy.yml (GitHub Pages via peaceiris/actions-gh-pages, Node 20, npm ci, publish dist/ on push to main)
-- [ ] T008 Run npm install and verify the empty shell passes npm run build and npm run lint (green baseline before any feature code)
+- [X] T001 Initialize npm project: package.json with the exact set-ops dependency set (react, react-dom, tailwindcss, @tailwindcss/vite, vite, @vitejs/plugin-react; dev: typescript, vitest, eslint, typescript-eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, @types/*) and scripts dev/build/lint/preview/test
+- [X] T002 [P] Create vite.config.ts with react() and tailwindcss() plugins and a base path for GitHub Pages deployment
+- [X] T003 [P] Create tsconfig.json (project references) plus tsconfig.app.json (strict bundler settings: noEmit, noUnusedLocals, noUnusedParameters, verbatimModuleSyntax + resolveJsonModule for the JSON catalog) and tsconfig.node.json
+- [X] T004 [P] Create eslint.config.js flat config (typescript-eslint recommended, react-hooks, react-refresh, globals.browser)
+- [X] T005 [P] Create index.html (root div + module script to /src/main.tsx) and src/index.css (Tailwind v4 entry)
+- [X] T006 [P] Create .gitignore (node_modules, dist, .vite, editor dirs — mirror set-ops)
+- [X] T007 [P] Create .github/workflows/deploy.yml (GitHub Pages via peaceiris/actions-gh-pages, Node 20, npm ci, publish dist/ on push to main)
+- [X] T008 Run npm install and verify the empty shell passes npm run build and npm run lint (green baseline before any feature code)
 
 ---
 
@@ -47,11 +47,11 @@ dependency beyond the set-ops set (constitution III, user constraint).
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T009 Create shared types in src/types/laboratory-test.ts (LaboratoryTest: id string unique, price number >= 0, title string, description string; SelectionLine: testId, amount >= 1) per data-model.md
-- [ ] T010 Create catalog data in src/data/laboratory-tests.json with the 10 seeded entries from contracts/data-contract.md (t-001..t-010; t-001 must read "Test for levels of sugar in blood")
-- [ ] T011 [P] Write format service tests in src/services/format.test.ts (RED first: 0 → "0,00 ₴", 150 → "150,00 ₴", 1234 → "1 234,00 ₴", negative input handling)
-- [ ] T012 Implement format service in src/services/format.ts using Intl.NumberFormat (locale uk-UA, currency UAH, 2 decimals) — makes T011 green
-- [ ] T013 Create App shell in src/App.tsx: two stacked sections (Search & Result Set on top, Selected Items + Summary below) in a mobile-first, constrained-width container per FR-018; sections render placeholder panels until US1/US2 land
+- [X] T009 Create shared types in src/types/laboratory-test.ts (LaboratoryTest: id string unique, price number >= 0, title string, description string; SelectionLine: testId, amount >= 1) per data-model.md
+- [X] T010 Create catalog data in src/data/laboratory-tests.json with the 10 seeded entries from contracts/data-contract.md (t-001..t-010; t-001 must read "Test for levels of sugar in blood")
+- [X] T011 [P] Write format service tests in src/services/format.test.ts (RED first: 0 → "0,00 ₴", 150 → "150,00 ₴", 1234 → "1 234,00 ₴", negative input handling)
+- [X] T012 Implement format service in src/services/format.ts using Intl.NumberFormat (locale uk-UA, currency UAH, 2 decimals) — makes T011 green
+- [X] T013 Create App shell in src/App.tsx: two stacked sections (Search & Result Set on top, Selected Items + Summary below) in a mobile-first, constrained-width container per FR-018; sections render placeholder panels until US1/US2 land
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 

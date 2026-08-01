@@ -1,0 +1,62 @@
+[
+  {
+    "id": "t-001",
+    "price": 150,
+    "title": "Glucose (blood sugar)",
+    "description": "Test for levels of sugar in blood"
+  },
+  {
+    "id": "t-002",
+    "price": 320,
+    "title": "Complete Blood Count",
+    "description": "Measures red blood cells, white blood cells and platelets"
+  },
+  {
+    "id": "t-003",
+    "price": 280,
+    "title": "Cholesterol Panel",
+    "description": "Total, LDL and HDL cholesterol levels"
+  },
+  {
+    "id": "t-004",
+    "price": 190,
+    "title": "Thyroid-Stimulating Hormone",
+    "description": "Checks thyroid gland function"
+  },
+  {
+    "id": "t-005",
+    "price": 240,
+    "title": "Vitamin D",
+    "description": "Levels of vitamin D in the blood"
+  },
+  {
+    "id": "t-006",
+    "price": 210,
+    "title": "Iron Studies",
+    "description": "Serum iron, ferritin and transferrin saturation"
+  },
+  {
+    "id": "t-007",
+    "price": 120,
+    "title": "Urinalysis",
+    "description": "Physical, chemical and microscopic examination of urine"
+  },
+  {
+    "id": "t-008",
+    "price": 160,
+    "title": "C-Reactive Protein",
+    "description": "Measures the inflammation marker CRP"
+  },
+  {
+    "id": "t-009",
+    "price": 260,
+    "title": "Liver Function Test",
+    "description": "ALT, AST and bilirubin enzyme panel"
+  },
+  {
+    "id": "t-010",
+    "price": 200,
+    "title": "HbA1c",
+    "description": "Average blood sugar level over the past three months"
+  }
+]
