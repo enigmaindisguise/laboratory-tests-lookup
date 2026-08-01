@@ -2,14 +2,14 @@
   "version": "0.15.1",
   "integration_state_schema": 1,
   "installed_integrations": [
-    "copilot"
+    "hermes"
   ],
   "integration_settings": {
-    "copilot": {
+    "hermes": {
       "script": "sh",
-      "invoke_separator": "."
+      "invoke_separator": "-"
     }
   },
-  "integration": "copilot",
-  "default_integration": "copilot"
+  "integration": "hermes",
+  "default_integration": "hermes"
 }
