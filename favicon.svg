@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- test tube -->
+  <rect x="16" y="8" width="16" height="6" rx="2" fill="#1f2937"/>
+  <path d="M19 14v14a5 5 0 0 0 10 0V14z" fill="none" stroke="#1f2937" stroke-width="2.5"/>
+  <!-- liquid -->
+  <path d="M19 26a5 5 0 0 0 10 0V20h-10z" fill="#3b82f6" opacity="0.8"/>
+  <!-- magnifier -->
+  <circle cx="32" cy="32" r="8" fill="none" stroke="#1f2937" stroke-width="2.5"/>
+  <line x1="38" y1="38" x2="44" y2="44" stroke="#1f2937" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
