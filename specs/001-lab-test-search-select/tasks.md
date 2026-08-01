@@ -72,16 +72,16 @@ confirm the "no results" message. (quickstart scenarios 1, 2, 3)
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T014 [P] [US1] Write fuzzy search tests in src/services/search.test.ts (RED first: "blood sugar" returns t-001; empty query returns all items; "zzzz" returns none; typo tolerance e.g. "glucose" still finds t-001; word-order tolerance)
+- [X] T014 [P] [US1] Write fuzzy search tests in src/services/search.test.ts (RED first: "blood sugar" returns t-001; empty query returns all items; "zzzz" returns none; typo tolerance e.g. "glucose" still finds t-001; word-order tolerance)
 
 ### Implementation for User Story 1
 
-- [ ] T015 [US1] Implement fuzzy search service in src/services/search.ts (pure token-overlap matcher per research.md §1: normalize, tokenize title+description, containment score, prefix + edit-distance <= 1 tolerance, stable catalog order on ties) — makes T014 green
-- [ ] T016 [P] [US1] Create AmountStepper shared component in src/components/AmountStepper.tsx (SHARED with US2: props value, min, onIncrement, onDecrement; up/down arrow buttons; small, single-responsibility)
-- [ ] T017 [P] [US1] Create SearchBar component in src/components/SearchBar.tsx (controlled search input, onQueryChange callback)
-- [ ] T018 [P] [US1] Create useSearch hook in src/hooks/useSearch.ts (query state, results via search service, browse mode on empty query)
-- [ ] T019 [US1] Create TestResultList component in src/components/TestResultList.tsx (row per result: title, description, price in UAH, AmountStepper for amount-to-add, Add button; internal scroll; "no results" empty state) — depends on T016
-- [ ] T020 [US1] Wire section 1 in src/App.tsx (SearchBar → useSearch → TestResultList; Add button emits an onAdd(testId, amount) callback; App provides a minimal stub handler — full selection logic lands in US2)
+- [X] T015 [US1] Implement fuzzy search service in src/services/search.ts (pure token-overlap matcher per research.md §1: normalize, tokenize title+description, containment score, prefix + edit-distance <= 1 tolerance, stable catalog order on ties) — makes T014 green
+- [X] T016 [P] [US1] Create AmountStepper shared component in src/components/AmountStepper.tsx (SHARED with US2: props value, min, onIncrement, onDecrement; up/down arrow buttons; small, single-responsibility)
+- [X] T017 [P] [US1] Create SearchBar component in src/components/SearchBar.tsx (controlled search input, onQueryChange callback)
+- [X] T018 [P] [US1] Create useSearch hook in src/hooks/useSearch.ts (query state, results via search service, browse mode on empty query)
+- [X] T019 [US1] Create TestResultList component in src/components/TestResultList.tsx (row per result: title, description, price in UAH, AmountStepper for amount-to-add, Add button; internal scroll; "no results" empty state) — depends on T016
+- [X] T020 [US1] Wire section 1 in src/App.tsx (SearchBar → useSearch → TestResultList; Add button emits an onAdd(testId, amount) callback; App provides a minimal stub handler — full selection logic lands in US2)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
