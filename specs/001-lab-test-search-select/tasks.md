@@ -122,11 +122,11 @@ amount > 1 removes it entirely; fresh load shows empty selection and "0,00 ₴".
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T028 [P] Mobile-first verification pass per FR-018/SC-007: at ~320px width sections stay stacked, all controls reachable, no horizontal page overflow; on desktop the stacked layout stays comfortable (constrained content width)
-- [ ] T029 Update quickstart.md with a mobile/responsive validation row (resize to ~320px, verify stacked layout and no overflow)
-- [ ] T030 Run full quality gates: npm run lint (zero errors), npm test -- --run (all green), npm run build (tsc -b && vite build succeeds)
-- [ ] T031 [P] Final compliance review: walk every acceptance scenario in spec.md against the built app; verify constitution gates I-V (FE-only, set-ops parity, no new deps, tested services, type/lint gates)
-- [ ] T032 Verify production build: npm run preview serves dist/ and the app works end-to-end from the static build (SC-006 offline check)
+- [X] T028 [P] Mobile-first verification pass per FR-018/SC-007: at ~320px width sections stay stacked, all controls reachable, no horizontal page overflow; on desktop the stacked layout stays comfortable (constrained content width)
+- [X] T029 Update quickstart.md with a mobile/responsive validation row (resize to ~320px, verify stacked layout and no overflow)
+- [X] T030 Run full quality gates: npm run lint (zero errors), npm test -- --run (all green), npm run build (tsc -b && vite build succeeds)
+- [X] T031 [P] Final compliance review: walk every acceptance scenario in spec.md against the built app; verify constitution gates I-V (FE-only, set-ops parity, no new deps, tested services, type/lint gates)
+- [X] T032 Verify production build: npm run preview serves dist/ and the app works end-to-end from the static build (SC-006 offline check)
 
 ---
 

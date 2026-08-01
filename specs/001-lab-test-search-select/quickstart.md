@@ -38,6 +38,7 @@ Map to spec acceptance scenarios and success criteria.
 | 7 | Total cost | Add 3 items with different amounts | Total = Σ(price × amount), e.g., t-001 ×2 (300) + t-002 (320) = "620,00 ₴"; updates immediately after every change | FR-010, FR-011, SC-003 |
 | 8 | Zero state | Load the page fresh | Empty selection, total "0,00 ₴" | FR-013, FR-014 |
 | 9 | Reload | Add items, refresh the page | Selection resets to empty; catalog still fully browsable | Assumption |
+| 10 | Mobile/responsive | Resize the viewport to ~320 px wide (or open on a narrow phone) | Sections stay stacked, all controls reachable, no horizontal page overflow | FR-018, SC-007 |
 
 ## Expected Final State
 
