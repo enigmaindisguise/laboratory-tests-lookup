@@ -103,16 +103,16 @@ amount > 1 removes it entirely; fresh load shows empty selection and "0,00 ₴".
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T021 [P] [US2] Write selection service tests in src/services/selection.test.ts (RED first: add creates entry with amount N; re-add increments; decrement stops at 1; delete removes entirely; total = sum of price x amount; empty selection totals 0) per data-model.md state transitions
+- [X] T021 [P] [US2] Write selection service tests in src/services/selection.test.ts (RED first: add creates entry with amount N; re-add increments; decrement stops at 1; delete removes entirely; total = sum of price x amount; empty selection totals 0) per data-model.md state transitions
 
 ### Implementation for User Story 2
 
-- [ ] T022 [US2] Implement selection service in src/services/selection.ts (pure functions: add, increment, decrement, remove, calculateTotal) — makes T021 green
-- [ ] T023 [P] [US2] Create useSelection hook in src/hooks/useSelection.ts (selection map state keyed by testId, lines joined with catalog, derived total via calculateTotal) — depends on T022
-- [ ] T024 [P] [US2] Create SelectedItemsList component in src/components/SelectedItemsList.tsx (row per selected test: title, price in UAH, AmountStepper min 1, Delete button; empty-state text when nothing selected) — reuses T016
-- [ ] T025 [P] [US2] Create SummaryPanel component in src/components/SummaryPanel.tsx (total cost via format service; "0,00 ₴" when empty) — depends on T012
-- [ ] T026 [US2] Wire section 2 in src/App.tsx (replace US1 stub: onAdd → useSelection.add(testId, amount); steppers in both sections; Delete removes; total updates immediately) — depends on T020, T023, T024, T025
-- [ ] T027 [US2] Verify reload behavior: refreshing the page resets the selection to empty while the catalog remains fully browsable (no persistence, per assumption)
+- [X] T022 [US2] Implement selection service in src/services/selection.ts (pure functions: add, increment, decrement, remove, calculateTotal) — makes T021 green
+- [X] T023 [P] [US2] Create useSelection hook in src/hooks/useSelection.ts (selection map state keyed by testId, lines joined with catalog, derived total via calculateTotal) — depends on T022
+- [X] T024 [P] [US2] Create SelectedItemsList component in src/components/SelectedItemsList.tsx (row per selected test: title, price in UAH, AmountStepper min 1, Delete button; empty-state text when nothing selected) — reuses T016
+- [X] T025 [P] [US2] Create SummaryPanel component in src/components/SummaryPanel.tsx (total cost via format service; "0,00 ₴" when empty) — depends on T012
+- [X] T026 [US2] Wire section 2 in src/App.tsx (replace US1 stub: onAdd → useSelection.add(testId, amount); steppers in both sections; Delete removes; total updates immediately) — depends on T020, T023, T024, T025
+- [X] T027 [US2] Verify reload behavior: refreshing the page resets the selection to empty while the catalog remains fully browsable (no persistence, per assumption)
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 

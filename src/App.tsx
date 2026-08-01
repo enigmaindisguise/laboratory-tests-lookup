@@ -1,15 +1,13 @@
 import SearchBar from './components/SearchBar';
 import TestResultList from './components/TestResultList';
+import SelectedItemsList from './components/SelectedItemsList';
+import SummaryPanel from './components/SummaryPanel';
 import { useSearch } from './hooks/useSearch';
+import { useSelection } from './hooks/useSelection';
 
 export default function App() {
   const { query, setQuery, results } = useSearch();
-
-  // Stub handler for US1: full selection logic lands in User Story 2 (T026).
-  const handleAdd = (testId: string, amount: number) => {
-    void testId;
-    void amount;
-  };
+  const { lines, total, addTest, incrementTest, decrementTest, removeTest } = useSelection();
 
   return (
     <main className="min-h-screen bg-gray-50 p-4 md:p-8">
@@ -20,13 +18,19 @@ export default function App() {
           <h2 className="mb-3 text-base font-semibold text-gray-700">Search &amp; Result Set</h2>
           <SearchBar query={query} onQueryChange={setQuery} />
           <div className="mt-3">
-            <TestResultList tests={results} onAdd={handleAdd} />
+            <TestResultList tests={results} onAdd={addTest} />
           </div>
         </section>
 
         <section className="rounded-lg bg-white p-4 shadow-sm">
           <h2 className="mb-3 text-base font-semibold text-gray-700">Selected Items</h2>
-          <p className="text-sm text-gray-500">Selection coming soon…</p>
+          <SelectedItemsList
+            lines={lines}
+            onIncrement={incrementTest}
+            onDecrement={decrementTest}
+            onDelete={removeTest}
+          />
+          <SummaryPanel total={total} />
         </section>
       </div>
     </main>

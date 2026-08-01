@@ -9,3 +9,7 @@ export interface SelectionLine {
   testId: string;
   amount: number;
 }
+
+export interface SelectedLine extends SelectionLine {
+  test: LaboratoryTest;
+}
