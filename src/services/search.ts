@@ -33,17 +33,22 @@ function levenshtein(a: string, b: string): number {
 }
 
 function matches(queryToken: string, itemTokens: Set<string>): boolean {
+  // Purely numeric tokens match exactly or by prefix only (FR-010): the edit
+  // distance branch is skipped so "1001" cannot fuzzy-match "1081"/"S-100".
+  const isNumeric = /^\d+$/.test(queryToken);
   for (const token of itemTokens) {
     if (token === queryToken) return true;
     if (queryToken.length >= 3 && token.startsWith(queryToken)) return true;
-    if (queryToken.length >= 4 && levenshtein(queryToken, token) <= 1) return true;
+    if (!isNumeric && queryToken.length >= 4 && levenshtein(queryToken, token) <= 1) return true;
   }
   return false;
 }
 
 // Pure token-overlap fuzzy matcher: normalizes, tokenizes the query and each
 // item's title + description, and scores items by the fraction of query tokens
-// that match (exact, prefix, or edit distance <= 1). Ties keep catalog order.
+// that match (exact, prefix, or edit distance <= 1 — except purely numeric
+// query tokens, which match exactly or by prefix only). Ties keep catalog
+// order.
 export function searchTests(query: string, catalog: LaboratoryTest[]): LaboratoryTest[] {
   const queryTokens = tokenize(query);
   if (queryTokens.length === 0) return catalog;

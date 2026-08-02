@@ -52,3 +52,24 @@ describe('searchTests', () => {
     expect(order).toEqual([...order].sort((a, b) => a - b));
   });
 });
+
+describe('numeric query tokens', () => {
+  it('returns no items for a purely numeric query with no exact/prefix match ("1001")', () => {
+    expect(searchTests('1001', catalog)).toHaveLength(0);
+  });
+
+  it('does not return resemblance matches for numeric queries (no "1081"/"1091"/"100")', () => {
+    const results = searchTests('1001', catalog);
+    const text = results.map((r) => `${r.title} ${r.description}`).join(' ');
+    expect(text).not.toMatch(/\b(1081|1091|100)\b/);
+  });
+
+  it('matches numeric queries exactly ("25" finds the 25-OH vitamin D test 8052)', () => {
+    const results = searchTests('25', catalog);
+    expect(results.map((r) => r.id)).toContain('8052');
+  });
+
+  it('keeps fuzzy behavior for tokens mixing letters and digits ("D2")', () => {
+    expect(searchTests('D2', catalog).length).toBeGreaterThan(0);
+  });
+});
